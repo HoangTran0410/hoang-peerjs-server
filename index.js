@@ -2,7 +2,7 @@ const { PeerServer } = require("peer");
 
 let clientsCount = 0;
 
-const peerServer = PeerServer({ port: 9000 });
+const peerServer = PeerServer({ port: process.env.PORT || 9000 });
 
 peerServer.on("connection", (client) => {
   clientsCount++;
