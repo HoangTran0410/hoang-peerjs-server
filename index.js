@@ -2,7 +2,13 @@ const { PeerServer } = require("peer");
 
 let clientsCount = 0;
 
-const peerServer = PeerServer({ port: process.env.PORT || 9000 });
+const customGenerationFunction = () =>
+  (Math.random().toString(36) + "000000000000000").substr(2, 11);
+
+const peerServer = PeerServer({
+  port: process.env.PORT || 9000,
+  generateClientId: customGenerationFunction,
+});
 
 peerServer.on("connection", (client) => {
   clientsCount++;
